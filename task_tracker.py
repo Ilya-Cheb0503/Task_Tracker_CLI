@@ -47,8 +47,8 @@ class TaskTracker:
         except ValueError:
             raise InvalidDateFormatError()
 
-        task_id: int = len(self.tasks) + 1
-        task = Task(task_id, title, description, category, due_date, priority)
+        id: int = len(self.tasks) + 1
+        task = Task(id, title, description, category, due_date, priority)
         self.tasks.append(task)
         self.save_tasks()
 
@@ -56,21 +56,21 @@ class TaskTracker:
         """Получение списка всех задач."""
         return self.tasks
 
-    def mark_task_as_completed(self, task_id: int) -> None:
+    def mark_task_as_completed(self, id: int) -> None:
         """Отметка задачи как завершенной по идентификатору."""
         for task in self.tasks:
-            if task.id == task_id:
+            if task.id == id:
                 task.mark_as_completed()
                 self.save_tasks()
                 return
         raise TaskNotFoundError()
 
-    def edit_task(self, task_id: int, title: Optional[str] = None, description: Optional[str] = None,
+    def edit_task(self, id: int, title: Optional[str] = None, description: Optional[str] = None,
                   category: Optional[str] = None, due_date: Optional[str] = None,
                   priority: Optional[str] = None) -> None:
         """Редактирование существующей задачи по идентификатору."""
         for task in self.tasks:
-            if task.id == task_id:
+            if task.id == id:
                 if title is not None:
                     task.title = title
                 if description is not None:
@@ -101,9 +101,9 @@ class TaskTracker:
             results = [task for task in results if task.status == status]
         return results
 
-    def delete_task(self, task_id: int) -> None:
+    def delete_task(self, id: int) -> None:
         """Удаление задачи по идентификатору."""
-        self.tasks = [task for task in self.tasks if task.id != task_id]
+        self.tasks = [task for task in self.tasks if task.id != id]
         self.save_tasks()
 
     def delete_tasks_by_category(self, category: str) -> None:

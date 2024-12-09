@@ -29,6 +29,14 @@ def test_edit_task(tracker):
     assert tasks[0].title == "Обновленная задача"
     assert tasks[0].description == "Обновленное описание"
 
+def test_delete_task(tracker):
+    tracker.add_task("Задача 1", "Описание задачи 1", "Работа", "2024-12-31", "высокий")
+    tasks = tracker.get_tasks()
+    assert tasks[0].title == "Задача 1"
+    tasks = tracker.delete_task(id=1)
+    tasks = tracker.get_tasks()
+    assert tasks == []
+
 def test_invalid_date(tracker):
     with pytest.raises(InvalidDateFormatError):
         tracker.add_task("Задача 1", "Описание задачи 1", "Работа", "31-12-2024", "высокий")
