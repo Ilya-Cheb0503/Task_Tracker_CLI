@@ -22,15 +22,15 @@ $ python main.py list
  ```
 3. Пометка задачи как выполненной:
  ```
-$ python main.py complete --task_id 1
+$ python main.py complete --id 1
  ```
 4.  Редактирование задачи:
  ```
-$ python main.py edit --task_id 1 --title "Обновленная Задача 1" --description "Обновленное описание"
+$ python main.py edit --id 1 --title "Обновленная Задача 1" --description "Обновленное описание"
  ```
 5. Удаление задачи:
  ```
-$ python main.py delete --task_id 1
+$ python main.py delete --id 1
  ```
 6. Удаление задач по категории:
  ```
